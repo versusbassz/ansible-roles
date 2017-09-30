@@ -1,0 +1,8 @@
+---
+
+hh_wp_cli__phar_url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+hh_wp_cli__bin_path: /usr/local/bin/wp
+hh_wp_cli__bin_mode: 0755
+hh_wp_cli__bin_owner: root
+hh_wp_cli__bin_group: root

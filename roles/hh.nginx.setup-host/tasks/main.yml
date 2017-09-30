@@ -1,0 +1,11 @@
+- name: clear {domain} site dir
+  file: path="/var/www/{{ host.domain }}/" state=absent
+
+- name: copy {domain} site files
+  copy: src="{{ host.files_path }}" dest=/var/www/{{ host.domain }}/public owner=www-data group=www-data mode=0644
+
+- name: copy {domain} site config
+  copy: src="{{ host.config_dir }}/{{ host.domain }}.conf" dest=/etc/nginx/sites-available/
+
+- name: enable {domain} site
+  file: path="/etc/nginx/sites-enabled/{{ host.domain }}.conf" state=link src="/etc/nginx/sites-available/{{ host.domain }}.conf"

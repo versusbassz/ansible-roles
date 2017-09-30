@@ -1,0 +1,9 @@
+- name: install certain wp plugins
+  shell: >
+    if ! $(wp plugin is-installed {{ item }}) ; then
+        wp plugin install {{ item }} --activate
+    fi
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data
+  with_items: "{{ plugins }}"

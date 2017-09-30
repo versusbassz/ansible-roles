@@ -1,0 +1,10 @@
+- name: install php packages
+  apt: name="{{ item }}" state=present
+  with_items:
+    - php5-cli
+    - php5-fpm
+    - php5-gd
+    - php5-imagick
+    - php5-curl
+    - php5-mysqlnd # conflicts with php5-mysql
+    - php5-xdebug

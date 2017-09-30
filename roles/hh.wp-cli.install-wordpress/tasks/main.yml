@@ -1,0 +1,39 @@
+- name: wordpress check is wp installed
+  command: wp core is-installed
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data
+  register: db_exists
+  ignore_errors: True
+
+
+- name: wordpress db drop
+  command: wp db drop --yes
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data
+  when: db_exists|failed
+  ignore_errors: True
+
+
+- name: wordpress db create
+  command: wp db create
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data
+  when: db_exists|failed
+
+
+- name: wordpress site install
+  command: >
+    wp core install \
+    --url="{{ site.url }}" \
+    --title="{{ site.title }}" \
+    --admin_user="{{ site.admin_user }}" \
+    --admin_password="{{ site.admin_password }}" \
+    --admin_email="{{ site.admin_email }}" \
+    --skip-email
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data
+  when: db_exists|failed

@@ -1,0 +1,7 @@
+- name: set wp options
+  shell: >
+    wp option update {{ item.name }} {{ item.value }}
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data
+  with_items: "{{ options }}"

@@ -1,0 +1,5 @@
+- name: download wordpress core
+  command: wp core download --locale=ru_RU
+  args:
+    chdir: "{{ project_path }}"
+  become_user: www-data

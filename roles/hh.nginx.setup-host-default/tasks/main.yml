@@ -1,0 +1,15 @@
+- name: switch off default nginx site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+
+- name: clear default site dir
+  file: path=/var/www/default/ state=absent
+
+- name: copy default site files
+  copy: src=default/files/       dest=/var/www/default owner=www-data group=www-data mode=0644
+
+- name: copy default site config
+  copy: src=default/default.conf dest=/etc/nginx/sites-available/
+
+- name: enable default site
+  file: path=/etc/nginx/sites-enabled/default.conf state=link src=/etc/nginx/sites-available/default.conf

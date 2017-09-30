@@ -1,0 +1,10 @@
+---
+- name: download wp-cli
+  get_url:
+    url:   "{{ hh_wp_cli__phar_url }}"
+    dest:  "{{ hh_wp_cli__bin_path }}"
+    mode:  "{{ hh_wp_cli__bin_mode }}"
+    owner: "{{ hh_wp_cli__bin_owner }}"
+    group: "{{ hh_wp_cli__bin_group }}"
+    force: yes
+  become: yes

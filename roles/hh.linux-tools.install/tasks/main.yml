@@ -1,0 +1,6 @@
+- name: install linux tools packages
+  apt: name="{{ item }}" state=present
+  with_items:
+    # sys
+    - htop
+    - tree
