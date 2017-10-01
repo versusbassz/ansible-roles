@@ -1,0 +1,5 @@
+- name: disable other system management tools (chef, puppet)
+  service: name={{ item }} state=stopped enabled=no
+  with_items:
+    - chef-client
+    - puppet
