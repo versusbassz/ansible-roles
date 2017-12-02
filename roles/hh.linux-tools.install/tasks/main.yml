@@ -4,3 +4,6 @@
     # sys
     - htop
     - tree
+
+    # vcs
+    - git
