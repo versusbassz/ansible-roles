@@ -1,0 +1,6 @@
+---
+host:
+  is_deploy_files: false
+  domain: "example.com"
+  files_path: false # here must be a real path
+  config_dir: false # here must be a real path

@@ -1,8 +1,10 @@
 - name: clear {domain} site dir
   file: path="/var/www/{{ host.domain }}/" state=absent
+  when: host.is_deploy_files
 
 - name: copy {domain} site files
   copy: src="{{ host.files_path }}" dest=/var/www/{{ host.domain }}/public owner=www-data group=www-data mode=0644
+  when: host.is_deploy_files
 
 - name: copy {domain} site config
   copy: src="{{ host.config_dir }}/{{ host.domain }}.conf" dest=/etc/nginx/sites-available/
